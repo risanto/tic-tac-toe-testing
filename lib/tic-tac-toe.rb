@@ -15,6 +15,8 @@ class Board
 
     private
 
+    # Horizontal, vertical, and diagonal winning conditions
+
     def check_horizontal?(board = @board)
         for i in 0..2 
             if board[i].all? {|symbol| symbol == 'X'} || board[i].all? {|symbol| symbol == 'O'}
@@ -55,6 +57,8 @@ class Board
         "
     end
 
+    # Check whether a move is valid, if so then put X/O at the exact i&j location
+
     def move?(i, j, player)
         if @board[i][j] != " "
             return false
@@ -70,12 +74,14 @@ class Board
         true
     end
 
-    def check_win?
-        return true if check_horizontal? || check_vertical? || check_diagonal?
-    end
-
     
     public
+
+    def check_win?
+        return true if check_horizontal? || check_vertical? || check_diagonal?
+
+        false
+    end
 
     def play
         while @count < 9
@@ -141,5 +147,5 @@ class Board
 end
 
 tic = Board.new()
-tic.play
+# tic.play
 
